@@ -43,7 +43,7 @@
     };
     // fetching query url
     const video = document.getElementById('video-id');
-    video.src = getQueryParam('url') || "assets/media/videoplayback.mp4";
+    video.src = decodeURIComponent(getQueryParam('url') || "assets/media/videoplayback.mp4");
 
 
     const myFP = fluidPlayer(
