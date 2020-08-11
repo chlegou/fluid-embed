@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fluid-Embed</title>
+    <style>
+        body,
+        html {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<video id="video-id">
+    <source src="assets/media/videoplayback.mp4" type="video/mp4"/>
+</video>
+
+<!--<script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>-->
+<script src="assets/js/fluidplayer.min.js"></script>
+<script>
+    getQueryParam = function (param) {
+        const result = window.location.search.match(
+            new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
+        );
+
+        return result ? result[3] : false;
+    };
+    // fetching query url
+    const video = document.getElementById('video-id');
+    video.src = getQueryParam('url') || "assets/media/videoplayback.mp4";
+
+
+    const myFP = fluidPlayer(
+        'video-id', {
+            "layoutControls": {
+                "controlBar": {
+                    "autoHideTimeout": 3,
+                    "animated": true,
+                    "autoHide": false
+                },
+                "logo": {
+                    "imageUrl": null,
+                    "position": "top left",
+                    "clickUrl": null,
+                    "opacity": 1
+                },
+                "htmlOnPauseBlock": {
+                    "html": null,
+                    "height": null,
+                    "width": null
+                },
+                "autoPlay": false,
+                "mute": false,
+                "allowTheatre": false,
+                "playPauseAnimation": false,
+                "playbackRateEnabled": true,
+                "allowDownload": false,
+                "playButtonShowing": true,
+                "fillToContainer": true,
+                "posterImage": ""
+            },
+            "vastOptions": {
+                "adList": [],
+                "adCTAText": false,
+                "adCTATextPosition": ""
+            }
+        });
+</script>
+
+</body>
+</html>
